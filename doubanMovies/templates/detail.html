@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>导演：</td>
+        <td>演员：</td>
+        <td>电影名称</td>
+    </tr>
+    {% for movie in movielist %}
+    <tr>
+        <td>{{ movie.directors }}</td>
+        <td>{{ movie.star }}</td>
+        <td>{{ movie.title }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

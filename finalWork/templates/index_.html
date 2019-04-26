@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="\static\css\style.css">
+</head>
+<body>
+<div class="container" >
+    <header class="title">
+        <h1 style="font-max-size: xx-large">数据爬取</h1>
+    </header>
+    <div class="main" style="margin-left: 20px">
+        <div class="side" style="min-width: 420px;margin-left: 0">
+            <nav class="side_menu  side_menu_open">
+                <ul class="menu_ul" data-id="all">
+                    <li><a href="#d1" class="side_icon side_icon_1">豆瓣电影数据爬取</a></li>
+                    <li><a href="#d2" class="side_icon side_icon_2">京东商城手机数据爬取</a></li>
+                    <li><a href="#d3" class="side_icon side_icon_3">58同城品牌公寓数据爬取</a></li>
+                    <li><a href="#d4" class="side_icon side_icon_4">搜狗微信公众号热门文章数据爬取</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tab_content"  style="padding-left: 20px;overflow: hidden;width: 500px;height: 500px;">
+            <div id="d1" class="item" style="width: 100%;height: 100%;">
+                <img src="/static/images/movie.png" style="margin-top:10px;width:auto;height:auto;max-width:100%;max-height:100%;">
+                <a href="{% url 'final_app:my_movies' %}">前往电影数据页面</a>
+            </div>
+            <div id="d2" class="item" style="overflow: hidden;width: 100%;height: 100%;">
+                <img src="/static/images/phone.png" style="margin-top:10px;width:auto;height:auto;max-width:100%;max-height:100%;">
+                <a href="{% url 'final_app:my_phones' %}">前往手机数据页面</a>
+            </div>
+            <div id="d3" class="item" style="overflow: hidden;width: 100%;height: 100%;">
+                <img src="/static/images/house.png" style="margin-top:10px;width:auto;height:auto;max-width:100%;max-height:100%;">
+                <a href="{% url 'final_app:my_houses' %}">前往房子数据页面</a>
+            </div>
+            <div id="d4" class="item" style="overflow: hidden;width: 100%;height: 100%;">
+                <img src="/static/images/article.png" style="margin-top:10px;width:auto;height:auto;max-width:100%;max-height:100%;">
+                <a href="{% url 'final_app:my_articles' %}">前往文章数据页面</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

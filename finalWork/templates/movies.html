@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="\static\css\table.css">
+    <link rel="stylesheet" type="text/css" href="\static\css\layui.css">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+    <style>
+        .layui-input-block{
+            width: 300px;
+            float: left;
+            margin-left: 0;
+        }
+
+        td.on{
+            border-bottom: 1px solid #4FC3A1;
+            color: #4FC3A1;
+        }
+        td.active{
+            background: #4FC3A1;
+            color: #fff;
+        }
+        .search_div{
+            margin-left: 50px;
+            position: fixed;
+            left: 5px;
+            top: 5px;
+            background-color: #fff;
+  }
+
+    </style>
+</head>
+<body>
+<div class="search_div">
+  <form class="layui-form" action="" onSubmit="return search();">
+    <div class="layui-form-item">
+      <label class="layui-form-label">输入关键字</label>
+      <div class="layui-input-block">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input" style="width: 300px" id="searchInput" value="">
+      </div>
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="table-wrapper" style="margin-top: 80px">
+    <table class="fl-table" id="all_list">
+
+    <thead style="background: bisque">
+    <tr>
+        <th style="width: 100px">导演</th>
+        <th>电影名称</th>
+        <th>豆瓣评分</th>
+        <th><a>链接</a></th>
+        <th>演员</th>
+        <th>图片</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for movie in movielist %}
+    <tr>
+        <td class="list_one">{{ movie.directors }}</td>
+        <td class="list_one">{{ movie.title }}</td>
+        <td>{{ movie.rate }}</td>
+        <td>{{ movie.url }}</td>
+        <td class="list_one">{{ movie.casts }}</td>
+        <td class="list_one">{{ movie.cover }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+<script>
+    var active = 0;
+  $('.ayui-btn').click(function(){
+      alert("llll");
+  })
+  function search(){
+    // 获取搜索框的值
+    var kwds = $("#searchInput").val();
+    // 获取第一个列表内容
+    var this_one = {};
+    var real_name = '';
+    // 定义数据列表
+    var list = $("#all_list .list_one");
+    // 定义查找的起始值
+    var true_one = 0;
+    for (var i = 0; i < list.length; i++) {
+      this_one = $(list[i]);
+
+      real_name = this_one.text().toString();
+      // 执行like匹配
+      if(real_name.match(kwds)){
+        // 处理第当前的结果
+        if(true_one == active){
+          // 获取窗口的宽和高
+          var windows_wdh = $(window).width();
+          var windows_hgt = $(window).height();
+          // 获取第一个坐标
+          var x_len = this_one.offset().left;
+          var y_len = this_one.offset().top;
+          // 驱动滚动条滚动到指定的位置
+          $("html,body").animate({scrollTop:(y_len-windows_hgt/2), scrollLeft:(x_len-windows_wdh/2)},500);
+          // 标记当前选中的结果
+          this_one.addClass('active');
+          this_one.removeClass('on');
+        }else{
+          // 标记符合的结果
+          this_one.addClass('on');
+          this_one.removeClass('active');
+        }
+        // 累加真实的选择
+        true_one++;
+      }else{
+        this_one.removeClass('on');
+      }
+    }
+    // 判断是否搜索完毕 如果搜索完毕 则从第一个开始 否则继续搜索下一个
+    active = active >= true_one-1 ? 0 : active+1;
+
+    return false;
+  }
+</script>
+</body>
+</html>

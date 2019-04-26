@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="\static\css\table.css">
+</head>
+<body>
+<div class="search_div">
+  <form class="layui-form" action="" onSubmit="return search();">
+    <div class="layui-form-item">
+      <label class="layui-form-label">输入关键字</label>
+      <div class="layui-input-block">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input" id="searchInput" value="张">
+      </div>
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">搜索</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="table-wrapper">
+    <table class="fl-table" id="all_list">
+
+    <thead style="background: bisque">
+    <tr>
+        <th>导演：</th>
+        <th>电影名称</th>
+        <th>豆瓣评分：</th>
+        <th><a>链接：</a></th>
+        <th>演员：</th>
+        <th>图片：</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for movie in movielist %}
+    <tr>
+        <td class="list_one">{{ movie.directors }}</td>
+        <td class="list_one">{{ movie.title }}</td>
+        <td>{{ movie.rate }}</td>
+        <td>{{ movie.url }}</td>
+        <td class="list_one">{{ movie.casts }}</td>
+        <td class="list_one">{{ movie.cover }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+</body>
+</html>

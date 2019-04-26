@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="\static\css\style.css">
+</head>
+<body>
+<div class="container">
+    <header class="title">
+        <h1>myWeb</h1>
+    </header>
+    <div class="main">
+        <div class="side">
+            <nav class="side_menu">
+                <div class="side_trigger"><span class="side_icon side_icon_menu"></span><a class="side_label">Menu</a></div>
+                <ul class="menu_ul" data-id="all">
+                    <li class="movie" id="m" data-id="movie"><a class="side_icon side_icon_1">page1</a></li>
+                    <li class="second" data-id="movie"><a class="side_icon side_icon_2">page2</a></li>
+                    <li class="third" data-id="movie"><a class="side_icon side_icon_3">page3</a></li>
+                    <li class="forth"><a class="side_icon side_icon_4">page4</a></li>
+                    <li class="fifth"><a class="side_icon side_icon_5">page5</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div id="p1" class="d1" style="display: contents">d1</div>
+            <div class="d2" style="display: none">d2</div>
+            <div class="d3" style="display: none">d3</div>
+            <div class="d4" style="display: none">d4</div>
+            <div class="d5" style="display: none">d5</div>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    var menu = (function() {
+	function init() {
+
+		[].slice.call( document.querySelectorAll( '.side_menu' ) ).forEach( function( el ) {
+
+			var trigger = el.querySelector( 'div.side_trigger' ),
+				icon = trigger.querySelector( 'span.side_icon_menu' ),
+                c=el.querySelector('ul'),
+				open = false;
+
+
+			trigger.addEventListener( 'click', function( event ) {
+				if( !open ) {
+					el.className += ' side_menu_open';
+					open = true;
+				}
+			}, false );
+
+
+			first = document.querySelector('.movie').addEventListener('click', function() {
+                x=document.getElementsByClassName('d1');
+                //x.style.cssText='display:none;'
+                //x.style.setProperty('display','none');
+                alert(typeof (x));
+
+
+            });
+
+			second = document.querySelector('.second').addEventListener('click', function() {
+                alert('here2');
+            });
+
+			third = document.querySelector('.third').addEventListener('click', function() {
+                alert('here3');
+            });
+
+			forth = document.querySelector('.forth').addEventListener('click', function() {
+                alert('here4');
+            });
+
+			fifth = document.querySelector('.fifth').addEventListener('click', function() {
+                alert('here5');
+            });
+
+			icon.addEventListener( 'click', function( event ) {
+				if( open ) {
+					event.stopPropagation();
+					open = false;
+					el.className = el.className.replace(/\bside_menu_open\b/,'');
+					return false;
+				}
+			}, false );
+
+		} );
+
+	}
+
+	init();
+
+})();
+
+
+</script>
+
+<script>
+    x=document.getElementsByClassName('d1');
+    x.style.setProperty('display','none');
+</script>
+
+</body>
+</html>
